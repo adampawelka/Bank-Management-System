@@ -3,7 +3,7 @@
 #include <string>
 
 class Account {
-    private:
+    protected:
         std::string accountNumber;
         double balance;
         std::string ownerName;
@@ -17,5 +17,7 @@ class Account {
 
         void deposit(double amount);
         void withdraw(double amount);
+        bool login(std::string password);
+        void transfer(double amount, std::string destinationAccountNumber);
 
 };
