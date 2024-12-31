@@ -16,4 +16,5 @@ class Loan {
         void processPayment();
         bool isPaidOff();
         double checkCreditScore();
+        
 };
