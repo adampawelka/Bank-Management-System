@@ -15,6 +15,16 @@ class Loan {
         void calculateInstallment();
         void processPayment();
         bool isPaidOff();
-        double checkCreditScore();
-        
+        double checkCreditScore(double netIncome, double monthlyLiabilities, double monthlyOther, double interestRate, int termMonths);
+        void setInterestRate(double netIncome, double monthlyLiabilities);
+        double calculateRate(double netIncome, double monthlyLiabilities, int termMonths);
+
+
+        //getters
+        double getLoanAmount() const;
+        double getInterestRate() const;
+        int getTermMonths() const;
+        double getMonthlyInstallment() const;
+        std::string getStartDate() const;
+
 };
