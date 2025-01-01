@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <iomanip>
+#include <cctype>
 
 std::string generateAccountNumber() {
     srand(time(0));
@@ -19,7 +20,35 @@ std::string generateAccountNumber() {
 }
 
 Account::Account(const std::string& newOwnerName, const std::string& newPassword) 
-    : accountNumber(generateAccountNumber()), balance(0), ownerName(newOwnerName), password(newPassword) {}
+    : accountNumber(generateAccountNumber()), balance(0), ownerName(newOwnerName), password(newPassword) {
+        if (newPassword.size() < 6) {
+                throw std::invalid_argument("Password too short.");
+        }
+        bool containsDigit = false;
+        bool containsLower = false;
+        bool containsUpper = false;
+        for (char c : newPassword) {
+            if (isdigit(c)) {
+                containsDigit = true;
+            }
+            if (isupper(c)) {
+                containsUpper = true;
+            }
+            if (islower(c)) {
+                containsLower = true;
+            }
+        }
+        if (!containsDigit) {
+            throw std::invalid_argument("Password must contain a digit.");
+        }
+        if (!containsUpper) {
+            throw std::invalid_argument("Password must contain an upper letter.");
+        }
+        if (!containsLower) {
+            throw std::invalid_argument("Password must contain a lower letter.");
+        }
+        
+    }
 
 //getters
 std::string Account::getAccountNumber() const { return accountNumber; }
