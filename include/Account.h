@@ -8,6 +8,9 @@ class Account {
         double balance;
         std::string ownerName;
         std::string password;
+        
+        void passwordValidation(const std::string& password) const;
+
     public: 
         Account(const std::string& newOwnerName, const std::string& newPassword);
 

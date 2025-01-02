@@ -21,13 +21,17 @@ std::string generateAccountNumber() {
 
 Account::Account(const std::string& newOwnerName, const std::string& newPassword) 
     : accountNumber(generateAccountNumber()), balance(0), ownerName(newOwnerName), password(newPassword) {
-        if (newPassword.size() < 6) {
-                throw std::invalid_argument("Password too short.");
+        passwordValidation(newPassword);
+    }
+
+void Account::passwordValidation(const std::string& password) const {
+    if (password.size() < 6) {
+        throw std::invalid_argument("Password too short. It must be at least 6 characters long.");
         }
         bool containsDigit = false;
         bool containsLower = false;
         bool containsUpper = false;
-        for (char c : newPassword) {
+        for (char c : password) {
             if (isdigit(c)) {
                 containsDigit = true;
             }
@@ -39,16 +43,15 @@ Account::Account(const std::string& newOwnerName, const std::string& newPassword
             }
         }
         if (!containsDigit) {
-            throw std::invalid_argument("Password must contain a digit.");
+            throw std::invalid_argument("Password must contain at least one digit.");
         }
         if (!containsUpper) {
-            throw std::invalid_argument("Password must contain an upper letter.");
+            throw std::invalid_argument("Password must contain at least one uppercase letter.");
         }
         if (!containsLower) {
-            throw std::invalid_argument("Password must contain a lower letter.");
+            throw std::invalid_argument("Password must contain at least one lowercase letter.");
         }
-        
-    }
+}
 
 //getters
 std::string Account::getAccountNumber() const { return accountNumber; }
