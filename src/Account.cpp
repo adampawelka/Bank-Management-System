@@ -77,3 +77,11 @@ void Account::withdraw(double amount) {
         throw std::invalid_argument("Withdrawal amount must be positive.\n");
     }
 }
+
+void Account::addLoan(const Loan& loan) {
+    loans.push_back(loan);
+}
+
+const std::vector<Loan>& Account::getLoans() const {
+    return loans;
+}

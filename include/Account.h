@@ -1,6 +1,8 @@
 
 #pragma once
 #include <string>
+#include <vector>
+#include <Loan.h>
 
 class Account {
     protected:
@@ -8,7 +10,8 @@ class Account {
         double balance;
         std::string ownerName;
         std::string password;
-        
+        std::vector<Loan> loans;
+
         void passwordValidation(const std::string& password) const;
 
     public: 
@@ -23,4 +26,6 @@ class Account {
         bool login(std::string password);
         void transfer(double amount, std::string destinationAccountNumber);
 
+        void addLoan(const Loan& loan);
+        const std::vector<Loan>& getLoans() const;
 };
