@@ -3,6 +3,9 @@
 #include <string>
 #include <vector>
 #include <Loan.h>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 class Account {
     protected:
